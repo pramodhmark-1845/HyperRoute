@@ -19,25 +19,28 @@ class _login_pageState extends State<login_page> {
   }
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 465),
+            SizedBox(height: height*0.6),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: EdgeInsets.fromLTRB(width*0.045, 0, 0, width*0.02),
               alignment: Alignment.centerLeft,
               child: Text(
-                'LOGIN TO HIKE!',
+                'LOGIN TO HYPER-ROUTE!',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: width*0.05,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              height: 55,
+              margin: EdgeInsets.fromLTRB(width*0.045, 0, width*0.045, width*0.02),
+              width: width,
+              height: height*0.065,
               decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.grey),
                   borderRadius: BorderRadius.circular(10)),
@@ -45,10 +48,10 @@ class _login_pageState extends State<login_page> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 10,
+                    width: width*0.02,
                   ),
                   SizedBox(
-                    width: 40,
+                    width: width*0.1,
                     child: TextField(
                       controller: countryController,
                       keyboardType: TextInputType.phone,
@@ -59,10 +62,10 @@ class _login_pageState extends State<login_page> {
                   ),
                   Text(
                     "|",
-                    style: TextStyle(fontSize: 33, color: Colors.grey),
+                    style: TextStyle(fontSize: width*0.08, color: Colors.grey),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: width*0.04,
                   ),
                   Expanded(
                       child: TextField(
@@ -76,7 +79,7 @@ class _login_pageState extends State<login_page> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: height*0.012),
 // get otp button
             InkWell(
               onTap: () async {

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hike_latest/services/get_track_buses.dart';
+
+import '../services/track_buses.dart';
 
 class track_orders extends StatefulWidget {
   @override
@@ -6,6 +9,12 @@ class track_orders extends StatefulWidget {
 }
 
 class _track_ordersState extends State<track_orders> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    get_trans();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +34,11 @@ class _track_ordersState extends State<track_orders> {
         ),
         backgroundColor: Color(0xF73A2DCD),
         toolbarHeight: 100,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: cur_t!.map((e) => trans_card(s: e)).toList(),
+        ),
       ),
     );
   }
