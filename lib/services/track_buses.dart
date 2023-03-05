@@ -10,8 +10,10 @@ class trans {
   String ? Status;
   String ? Booking_date;
   String ? Booking_time;
+  String ?  time_diff;
   String ? price;
-  trans({this.BusId, this.start, this.end, this.start_time, this.end_time,this.TransId,this.Status,this.Booking_date,this.Booking_time,this.price});
+  String ? parcel_name;
+  trans({this.BusId, this.start, this.end, this.start_time, this.end_time,this.TransId,this.Status,this.Booking_date,this.Booking_time,this.price,this.time_diff,this.parcel_name});
 }
 
 class trans_card extends StatefulWidget {
@@ -25,73 +27,150 @@ class trans_card extends StatefulWidget {
 class _trans_cardState extends State<trans_card> {
   @override
   Widget build(BuildContext context) {
-    return MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-      child: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 1,
-          child: Card(
-            elevation: 5,
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.fromLTRB(20, 10,0,10),
-                  child: Text(
-                    "Order ID - " + widget.s.TransId.toString(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20,
-                    ),
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    print("Height");
+    print(height);
+    print("Width");
+    print(width);
+    return Center(
+      child: SizedBox(
+        width: width * 1,
+        child: Card(
+          elevation: 5,
+          margin: EdgeInsets.symmetric(horizontal: width*0.02, vertical: height*0.01),
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(width*0.04,height*0.88*0.01,width*0.04,height*0.88*0.005),
+                child: Text(
+                  widget.s.parcel_name.toString()+" - " + widget.s.TransId.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: width*0.045,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
-                Row(
+              ),
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.fromLTRB(width*0.04,0,width*0.04,height*0.88*0.01),
+                    child: Text("Rs "+widget.s.price.toString(),
+                    style: TextStyle(
+                      fontSize: width*0.03,
+                      letterSpacing: 1,
+                    ),),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(width*0.045,0,width*0.04,height*0.88*0.01),
+                    child: Text("Date -"+widget.s.Booking_date.toString(),
+                      style: TextStyle(
+                        fontSize: width*0.03,
+                        letterSpacing: 1,
+                      ),),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(width*0.045,0,width*0.04,height*0.88*0.01),
+                    child: Text("Booking Time -"+widget.s.Booking_time.toString(),
+                      style: TextStyle(
+                        fontSize: width*0.03,
+                        letterSpacing: 1,
+                      ),),
+                  ),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(width*0.045,height*0.88*0.008,width*0.04,height*0.88*0.008),
+                padding:EdgeInsets.fromLTRB(0,height*0.88*0.008,0,height*0.88*0.008),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xF73A2DCD)),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+                child: Row(
                   children: [
-                    SizedBox(width: 20),
+                    SizedBox(width: width*0.04),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           widget.s.start.toString(),
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: width*0.04,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         Text(
                           widget.s.start_time.toString(),
                           style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                            fontSize: width*0.05,
                           ),
                         ),
                       ],
                     ),
                     Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text("1 hr")),
+                        margin: EdgeInsets.symmetric(horizontal: width*0.05),
+                        child: Text("- -"+widget.s.time_diff.toString()+"- -")),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           widget.s.end.toString(),
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: width*0.04,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         Text(
                           widget.s.end_time.toString(),
                           style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                            fontSize: width*0.05,
                           ),
                         ),
                       ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(width*0.045,height*0.88*0.01,width*0.04,height*0.88*0.01),
+                child: Text("STATUS - "+widget.s.Status.toString(),
+                  style: TextStyle(
+                    fontSize: width*0.04,
+                    letterSpacing: 1,
+                  ),),
+              ),
+              InkWell(
+                onTap: () {
+                },
+                child: Center(
+                  child: Container(
+                    // height: height*0.88*0.1,
+                    // width: width*0.95,
+                    padding: EdgeInsets.symmetric(horizontal: width*0.05, vertical: height*0.88*0.01),
+                    margin: EdgeInsets.symmetric(horizontal: width*0.05, vertical: height*0.88*0.01),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Color(0xF7006E25)),
+                    ),
+                    child: Text(
+                      'LIVE TRACKING',
+                      style: TextStyle(
+                        color: Color(0xF7006E25),
+                        fontSize: width*0.05,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: height*0.88*0.025,)
+            ],
           ),
         ),
       ),

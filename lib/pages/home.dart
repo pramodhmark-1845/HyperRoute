@@ -42,9 +42,12 @@ class _home_pageState extends State<home_page> {
 
   @override
   Widget build(BuildContext context)  {
-    print('Here');
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    print("Height");
+    print(height);
+    print("Width");
+    print(width);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
 //APP BAR

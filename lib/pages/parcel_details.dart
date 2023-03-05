@@ -24,7 +24,12 @@ class _parcel_pageState extends State<parcel_page> {
   TextEditingController est_val = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
-    print(cat);
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    print("Height");
+    print(height);
+    print("Width");
+    print(width);
     return Scaffold(
       appBar: AppBar(
         title: Text(
