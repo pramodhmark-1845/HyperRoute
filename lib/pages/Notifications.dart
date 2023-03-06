@@ -8,13 +8,19 @@ class notf_page extends StatefulWidget {
 class _notf_pageState extends State<notf_page> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    print("Height");
+    print(height);
+    print("Width");
+    print(width);
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'NOTIFICATIONS',
           style: TextStyle(
               letterSpacing: 2.0,
-              fontSize: 20.0,
+              fontSize: width*0.045,
               shadows: <Shadow>[
                 Shadow(
                   blurRadius: 2.0,
@@ -24,7 +30,7 @@ class _notf_pageState extends State<notf_page> {
               fontWeight: FontWeight.bold),
         ),
         backgroundColor: Color(0xF73A2DCD),
-        toolbarHeight: 100,
+        toolbarHeight: height*0.12,
         actions: [
           IconButton(
             onPressed: () {},

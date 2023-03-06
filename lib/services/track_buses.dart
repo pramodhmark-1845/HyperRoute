@@ -144,29 +144,60 @@ class _trans_cardState extends State<trans_card> {
                     letterSpacing: 1,
                   ),),
               ),
-              InkWell(
-                onTap: () {
-                },
-                child: Center(
-                  child: Container(
-                    // height: height*0.88*0.1,
-                    // width: width*0.95,
-                    padding: EdgeInsets.symmetric(horizontal: width*0.05, vertical: height*0.88*0.01),
-                    margin: EdgeInsets.symmetric(horizontal: width*0.05, vertical: height*0.88*0.01),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Color(0xF7006E25)),
-                    ),
-                    child: Text(
-                      'LIVE TRACKING',
-                      style: TextStyle(
-                        color: Color(0xF7006E25),
-                        fontSize: width*0.05,
-                        fontWeight: FontWeight.w500,
+              Center(
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                      },
+                      child: Center(
+                        child: Container(
+                          // height: height*0.88*0.1,
+                          // width: width*0.95,
+                          padding: EdgeInsets.symmetric(horizontal: width*0.01, vertical: height*0.88*0.01),
+                          margin: EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.88*0.01),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Color(0xFCC40000)),
+                          ),
+                          child: Text(
+                            'ORDER DETAILS',
+                            style: TextStyle(
+                              color: Color(0xFCC40000),
+                              fontSize: width*0.03,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    InkWell(
+                      onTap: () {
+                      },
+                      child: Center(
+                        child: Container(
+                          // height: height*0.88*0.1,
+                          // width: width*0.95,
+                          padding: EdgeInsets.symmetric(horizontal: width*0.01, vertical: height*0.88*0.01),
+                          margin: EdgeInsets.symmetric(horizontal: width*0.005, vertical: height*0.88*0.01),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Color(0xF7006E25)),
+                          ),
+                          child: Text(
+                            'LIVE TRACKING',
+                            style: TextStyle(
+                              color: Color(0xF7006E25),
+                              fontSize: width*0.03,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: height*0.88*0.025,)
