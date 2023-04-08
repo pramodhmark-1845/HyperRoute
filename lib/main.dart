@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hike_latest/animations/startapp.dart';
+import 'package:hike_latest/pages/enter_profile.dart';
 import 'package:hike_latest/pages/profile_loader.dart';
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
@@ -22,7 +23,9 @@ class _MyappState extends State<Myapp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: start_app(),
+      //home: profile_page(),
     );
   }
 }

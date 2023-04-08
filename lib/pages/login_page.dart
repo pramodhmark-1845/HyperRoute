@@ -158,7 +158,22 @@ class _login_pageState extends State<login_page> {
                             Navigator.push(
                                 context, MaterialPageRoute(builder: (context) => otp(phone: countryController.text.toString()+phone)));
                           },
-                          codeAutoRetrievalTimeout: (String verificationId) {},
+                          codeAutoRetrievalTimeout: (String verificationId) {
+                            // showDialog(
+                            //     context: context,
+                            //     barrierDismissible: false,
+                            //     builder: (BuildContext context) => AlertDialog(
+                            //       title: const Text('Otp Generation Error'),
+                            //       content:
+                            //       const Text('Please Try Again'),
+                            //       actions: <Widget>[
+                            //         TextButton(
+                            //           onPressed: () => Navigator.pop(context, 'OK'),
+                            //           child: const Text('OK'),
+                            //         ),
+                            //       ],
+                            //     ));
+                          },
                         );
                       //}
                     },

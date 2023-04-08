@@ -22,6 +22,8 @@ class _profile_pageState extends State<profile_page> {
   }
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -29,7 +31,7 @@ class _profile_pageState extends State<profile_page> {
           "PROFILE",
           style: TextStyle(
               letterSpacing: 2.0,
-              fontSize: 20.0,
+              fontSize: width*0.045,
               shadows: <Shadow>[
                 Shadow(
                   blurRadius: 2.0,
@@ -39,86 +41,114 @@ class _profile_pageState extends State<profile_page> {
               fontWeight: FontWeight.bold),
         ),
         backgroundColor: Color(0xF73A2DCD),
-        toolbarHeight: 100,
+        toolbarHeight: height*0.1,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: height*0.88*0.01),
 // profile edit
-          InkWell(
-            onTap: () async {
-              await Navigator.push(
-                  context,
-                  MaterialPageRoute<dynamic>(
-                      builder: (context) => edit_page(
-                          )));
-              setState(() {
-                //load data from server
-              });
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(50, 40, 80, 10),
-                  child: Text(
-                    profile['Firstname'].toString(),
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: width*0.04,vertical: height*0.88*0.02),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.brown),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            child: InkWell(
+              onTap: () async {
+                await Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                        builder: (context) => edit_page(
+                            )));
+                setState(() {
+                  //load data from server
+                });
+              },
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.fromLTRB(width*0.03,height*0.88*0.02, width*0.1, height*0.88*0.01),
+                        child: Text(
+                          profile['Firstname'].toString().length > 13 ? profile['Firstname'].toString().substring(0, 13)+'...' : profile['Firstname'].toString(),
+                          style: TextStyle(
+                            fontSize: width*0.06,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, height*0.88*0.015),
+                        child: Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 83, 83, 83),
+                            fontWeight: FontWeight.w400,
+                            fontSize: width*0.035,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  child: Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.symmetric(horizontal: width*0.03, vertical: height*0.88*0.0005),
+                    child: Text(profile['Phone'].toString(),
+                      style: TextStyle(
+                        fontSize: width*0.035,
+                      ),),
                   ),
-                ),
-              ],
+                  SizedBox(height: height*0.88*0.02),
+                ],
+              ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-            child: Text(profile['Phone'].toString()),
-          ),
-          SizedBox(height: 10),
+          SizedBox(height: height*0.88*0.01),
 // KYC Verification
           InkWell(
             onTap: () {},
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(50, 40, 120, 10),
-                  child: Text(
-                    'KYC verification',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2.0,
-                      fontWeight: FontWeight.w500,
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(width*0.1, height*0.04, width*0.2, height*0.88*0.01),
+                      child: Text(
+                        'KYC verification',
+                        style: TextStyle(
+                          fontSize: width*0.05,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
+                    // Container(
+                    //   margin: EdgeInsets.fromLTRB(0, 0, 0, height*0.88*0.01),
+                    //   //padding: EdgeInsets.fromLTRB(0, 0, width*0.1, height*0.88*0.01),
+                    //   child: Text(
+                    //     '>',
+                    //     style: TextStyle(
+                    //       color: Color.fromARGB(255, 83, 83, 83),
+                    //       fontSize: width*0.05,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: Text(
-                    '>',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontSize: 20,
-                    ),
-                  ),
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.symmetric(horizontal: width*0.1, vertical: 0),
+                  child: Text('Verify your Aadhar',
+                  style: TextStyle(
+                    fontSize: width*0.03,
+                  ),),
                 ),
+                SizedBox(height: height*0.88*0.02),
               ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-            child: Text('Verify your Aadhar'),
           ),
           Divider(
             color: Colors.grey,
@@ -126,36 +156,46 @@ class _profile_pageState extends State<profile_page> {
 // policies
           InkWell(
             onTap: () {},
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(50, 40, 190, 10),
-                  child: Text(
-                    'Policies',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 2.0,
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(width*0.1, height*0.03, width*0.2, height*0.88*0.01),
+                      child: Text(
+                        'Policies',
+                        style: TextStyle(
+                          fontSize: width*0.05,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
+                    // Container(
+                    //   margin: EdgeInsets.fromLTRB(0, 0, 0, height*0.88*0.01),
+                    //   //padding: EdgeInsets.fromLTRB(0, 0, width*0.1, height*0.88*0.01),
+                    //   child: Text(
+                    //     '>',
+                    //     style: TextStyle(
+                    //       color: Color.fromARGB(255, 83, 83, 83),
+                    //       fontSize: width*0.05,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: Text(
-                    '>',
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.symmetric(horizontal: width*0.1, vertical: 0),
+                  child: Text('Terms and Conditions, Privacy Policy',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontSize: 20,
-                    ),
-                  ),
+                      fontSize: width*0.03,
+                    ),),
                 ),
+                SizedBox(height: height*0.88*0.02),
               ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-            child: Text('Terms and Conditons, Privacy Policy'),
           ),
           Divider(
             color: Colors.grey,
@@ -163,41 +203,105 @@ class _profile_pageState extends State<profile_page> {
 // previous orders
           InkWell(
             onTap: () {},
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(50, 40, 117, 10),
-                  child: Text(
-                    'Previous Orders',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 2.0,
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(width*0.1, height*0.03, width*0.2, height*0.88*0.01),
+                      child: Text(
+                        'Previous Orders',
+                        style: TextStyle(
+                          fontSize: width*0.05,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
+                    // Container(
+                    //   margin: EdgeInsets.fromLTRB(0, 0, 0, height*0.88*0.01),
+                    //   //padding: EdgeInsets.fromLTRB(0, 0, width*0.1, height*0.88*0.01),
+                    //   child: Text(
+                    //     '>',
+                    //     style: TextStyle(
+                    //       color: Color.fromARGB(255, 83, 83, 83),
+                    //       fontSize: width*0.05,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: Text(
-                    '>',
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.symmetric(horizontal: width*0.1, vertical: 0),
+                  child: Text('Check Previous Orders',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontSize: 20,
-                    ),
-                  ),
+                      fontSize: width*0.03,
+                    ),),
                 ),
+                SizedBox(height: height*0.88*0.02),
               ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-            child: Text('Check Previous Orders'),
           ),
           Divider(
             color: Colors.grey,
           ),
 // logout
+//           InkWell(
+//             onTap: () {
+//               showDialog(
+//                 context: context,
+//                 barrierDismissible: false,
+//                 builder: (BuildContext context) => AlertDialog(
+//                   title: const Text('Logout !'),
+//                   content: const Text('Do you want to Logout ?'),
+//                   actions: <Widget>[
+//                     TextButton(
+//                       onPressed: () {
+//                         Places.clear();
+//                         FirebaseAuth.instance.signOut();
+//                         Navigator.pop(context);
+//                       },
+//                       child: const Text('LOGOUT'),
+//                     ),
+//                     TextButton(
+//                       onPressed: () {
+//                         Navigator.pop(context);
+//                       },
+//                       child: const Text('NO'),
+//                     ),
+//                   ],
+//                 ),
+//               );
+//             },
+//             child: Row(
+//               crossAxisAlignment: CrossAxisAlignment.end,
+//               children: <Widget>[
+//                 Container(
+//                   margin: EdgeInsets.fromLTRB(50, 40, 190, 10),
+//                   child: Text(
+//                     'Logout',
+//                     style: TextStyle(
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.w500,
+//                       letterSpacing: 2.0,
+//                     ),
+//                   ),
+//                 ),
+//                 Container(
+//                   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+//                   child: Text(
+//                     '>',
+//                     style: TextStyle(
+//                       color: Color.fromARGB(255, 83, 83, 83),
+//                       fontSize: 20,
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
           InkWell(
             onTap: () {
               showDialog(
@@ -211,7 +315,7 @@ class _profile_pageState extends State<profile_page> {
                       onPressed: () {
                         Places.clear();
                         FirebaseAuth.instance.signOut();
-                        Navigator.pop(context); 
+                        Navigator.pop(context);
                       },
                       child: const Text('LOGOUT'),
                     ),
@@ -225,30 +329,44 @@ class _profile_pageState extends State<profile_page> {
                 ),
               );
             },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(50, 40, 190, 10),
-                  child: Text(
-                    'Logout',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 2.0,
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(width*0.1, height*0.03, width*0.2, height*0.88*0.01),
+                      child: Text(
+                        'Logout',
+                        style: TextStyle(
+                          fontSize: width*0.05,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
+                    // Container(
+                    //   margin: EdgeInsets.fromLTRB(0, 0, 0, height*0.88*0.01),
+                    //   //padding: EdgeInsets.fromLTRB(0, 0, width*0.1, height*0.88*0.01),
+                    //   child: Text(
+                    //     '>',
+                    //     style: TextStyle(
+                    //       color: Color.fromARGB(255, 83, 83, 83),
+                    //       fontSize: width*0.05,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: Text(
-                    '>',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 83, 83, 83),
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   alignment: Alignment.centerLeft,
+                //   margin: EdgeInsets.symmetric(horizontal: width*0.1, vertical: 0),
+                //   child: Text('Check Previous Orders',
+                //     style: TextStyle(
+                //       fontSize: width*0.03,
+                //     ),),
+                // ),
+                SizedBox(height: height*0.88*0.02),
               ],
             ),
           ),

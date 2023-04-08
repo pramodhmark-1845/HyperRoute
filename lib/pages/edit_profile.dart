@@ -15,25 +15,27 @@ class edit_page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: const Text(_title),
-          toolbarHeight: 100,
+          toolbarHeight: height*0.1,
           backgroundColor: Color(0xF73A2DCD),
         ),
         body: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(width*0.02),
             child: ListView(
               children: <Widget>[
                 Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(10),
-                    child: const Text(
+                    padding: EdgeInsets.all(width*0.02),
+                    child: Text(
                       '',
                       style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.w500,
-                          fontSize: 30),
+                          fontSize: width*0.05),
                     )),
 // previous first name
                 Container(

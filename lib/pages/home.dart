@@ -6,6 +6,7 @@ import 'package:drop_shadow_image/drop_shadow_image.dart';
 import 'package:hike_latest/animations/startapp.dart';
 import 'package:hike_latest/pages/Notifications.dart';
 import 'package:hike_latest/pages/parcel_details.dart';
+import 'package:hike_latest/services/Transaction_process.dart';
 import 'package:hike_latest/services/get_bus_timings.dart';
 import 'package:hike_latest/services/get_places.dart';
 import 'package:hike_latest/services/get_profile.dart';
@@ -44,10 +45,6 @@ class _home_pageState extends State<home_page> {
   Widget build(BuildContext context)  {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    print("Height");
-    print(height);
-    print("Width");
-    print(width);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
 //APP BAR
@@ -302,13 +299,13 @@ class _home_pageState extends State<home_page> {
                                 ],
                               ));
                     } else {
+                      TransDetails.receiverphone=countryController.text.toString()+phone_number.text.toString();
+                      TransDetails.start=start;
+                      TransDetails.end=end;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => parcel_page(
-                                    start: start,
-                                    end: end,
-                                    rec_phone: phone_number.toString(),
                                   )));
                     }
                   },

@@ -15,6 +15,8 @@ class bus_times extends StatefulWidget {
 class _bus_timesState extends State<bus_times> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     if(s_buses.isEmpty==true){
       return Scaffold (
         appBar: AppBar(
@@ -32,7 +34,7 @@ class _bus_timesState extends State<bus_times> {
                 fontWeight: FontWeight.bold),
           ),
           backgroundColor: Color(0xF73A2DCD),
-          toolbarHeight: 100,
+          toolbarHeight: height*0.12,
         ),
         body: Center(
             child: Text("No Buses Available !\nPlease Try Again Later",
@@ -79,18 +81,18 @@ class _bus_timesState extends State<bus_times> {
           title: Text(
             widget.start.toString() + " -> " + widget.end.toString(),
             style: TextStyle(
-                letterSpacing: 2.0,
-                fontSize: 20.0,
-                shadows: <Shadow>[
-                  Shadow(
-                    blurRadius: 2.0,
-                    offset: const Offset(0.0, 1.5),
-                  )
-                ],
+                letterSpacing: 1.0,
+                fontSize: width*0.04,
+                // shadows: <Shadow>[
+                // //   Shadow(
+                // //     blurRadius: 2.0,
+                // //     offset: const Offset(0.0, 1.5),
+                // //   )
+                // // ],
                 fontWeight: FontWeight.bold),
           ),
           backgroundColor: Color(0xF73A2DCD),
-          toolbarHeight: 100,
+          toolbarHeight: height*0.1,
         ),
         body: SingleChildScrollView(
           child: Column(

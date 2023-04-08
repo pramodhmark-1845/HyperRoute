@@ -16,27 +16,29 @@ class enter_profile_page extends StatelessWidget {
   TextEditingController ml = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.symmetric(horizontal: width*0.02,vertical: height*0.1),
             child: ListView(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  //padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                  margin: EdgeInsets.symmetric(horizontal: width*0.02, vertical: height*0.02),
                   alignment: Alignment.center,
                   child: Text(
                     'NEW TO HIKE !',
                     style: TextStyle(
                       color: Color(0xF73A2DCD),
-                      fontSize: 25,
+                      fontSize: width*0.06,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
 // first name
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.all(width*0.03),
                   child: TextField(
                     controller: fn,
                     decoration: const InputDecoration(
@@ -46,7 +48,7 @@ class enter_profile_page extends StatelessWidget {
                 ),
 // last name
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.all(width*0.03),
                   child: TextField(
                     controller: ln,
                     decoration: const InputDecoration(
@@ -56,7 +58,7 @@ class enter_profile_page extends StatelessWidget {
                 ),
 //Email details
                 Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: EdgeInsets.all(width*0.03),
                   child: TextField(
                     controller: ml,
                     decoration: InputDecoration(
@@ -64,7 +66,7 @@ class enter_profile_page extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: height*0.03),
                 InkWell(
                   onTap: ()  async {
                     if (ln.text.isEmpty == true ||
@@ -105,9 +107,11 @@ class enter_profile_page extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 20.0),
-                    margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                    alignment: Alignment.center,
+                    // height: height*0.88*0.1,
+                    // width: width*0.95,
+                    padding: EdgeInsets.symmetric(horizontal: width*0.1, vertical: height*0.02),
+                    margin: EdgeInsets.symmetric(horizontal: width*0.08, vertical: height*0.01),
+                   // alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Color(0xF73A2DCD),
                       borderRadius: BorderRadius.circular(30),
@@ -124,10 +128,11 @@ class enter_profile_page extends StatelessWidget {
                       ],
                     ),
                     child: Text(
-                      'CREATE PROFILE',
+                      'Create Profile',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         letterSpacing: 1.0,
-                        fontSize: 20.0,
+                        fontSize: width*0.05,
                         shadows: <Shadow>[
                           Shadow(
                             blurRadius: 2.0,
@@ -138,10 +143,9 @@ class enter_profile_page extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                  ),
-                ),
+                  )),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: EdgeInsets.symmetric(horizontal: width*0.01),
                   child: TextButton(
                     onPressed: () {
                       FirebaseAuth.instance.signOut();
@@ -152,6 +156,7 @@ class enter_profile_page extends StatelessWidget {
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: Colors.black,
+                        fontSize: width*0.035,
                       ),
                     ),
                   ),

@@ -20,6 +20,7 @@ Future getbuses(String Start, String End) async{
 
 // Loop through the querySnapshot to access the documents
   int i=0;
+  int len=0;
   for (var document in querySnapshot.docs) {
     //print(document.data() as Map<String, dynamic>);
     buses_start.add(document.data() as Map<String, dynamic>);
@@ -31,14 +32,25 @@ Future getbuses(String Start, String End) async{
         .where("Slot", isEqualTo: buses_start[i]['Slot'])
         .where("TimeValue", isGreaterThan: buses_start[i]['TimeValue'])
         .get();
-    if(end.docs.length==0){
-      buses_start.removeAt(i);
-    }
     print(end.docs);
-    for(var d in end.docs){
-      buses_end.add(d.data() as Map<String, dynamic>);
+    if(end.docs.isEmpty)
+      {
+        buses_start.removeAt(i);
+      }
+    else {
+      for (var d in end.docs) {
+        buses_end.add(d.data() as Map<String, dynamic>);
+      }
+      i=i+1;
     }
-   i=i+1;
+    // if(buses_end.length==len){
+    //   buses_start.removeAt(i);
+    // }
+    // else
+    //   {
+    //     len=len+1;
+    //     i=i+1;
+    //   }
   }
   print(buses_start);
   print(buses_start.length);

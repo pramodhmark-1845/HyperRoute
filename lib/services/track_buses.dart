@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hike_latest/pages/googlemaps_track.dart';
 
 class trans {
   String? BusId;
@@ -174,6 +175,8 @@ class _trans_cardState extends State<trans_card> {
                     ),
                     InkWell(
                       onTap: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => googlemapstrack()));
                       },
                       child: Center(
                         child: Container(

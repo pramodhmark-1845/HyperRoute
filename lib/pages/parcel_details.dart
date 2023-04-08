@@ -1,17 +1,12 @@
 import 'package:hike_latest/pages/bus_timings.dart';
 import 'package:flutter/material.dart';
 import 'package:hike_latest/pages/buses_page.dart';
+import 'package:hike_latest/services/Transaction_process.dart';
 import 'package:hike_latest/services/service_card.dart';
 
 class parcel_page extends StatefulWidget {
-  String start;
-  String end;
-  String rec_phone;
   parcel_page(
-      {Key? key,
-      required this.start,
-      required this.end,
-      required this.rec_phone})
+      {Key? key})
       : super(key: key);
   @override
   State<parcel_page> createState() => _parcel_pageState();
@@ -27,10 +22,6 @@ class _parcel_pageState extends State<parcel_page> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    print("Height");
-    print(height);
-    print("Width");
-    print(width);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -137,13 +128,18 @@ class _parcel_pageState extends State<parcel_page> {
                           valueColor: AlwaysStoppedAnimation<Color>(Color(0xF73A2DCD)),
                         ) );
                       });
-                  await get_bus_data(widget.start, widget.end);
+                  await get_bus_data(TransDetails.start!, TransDetails.end!);
+                  Parceldetails.cat=cat.text.toString();
+                  Parceldetails.estval=est_val.text.toString();
+                  Parceldetails.estwt=est_weight.text.toString();
+                  Parceldetails.parceldes=product_description.text.toString();
+                  Parceldetails.productname=item.text.toString();
                   Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              bus_times(start: widget.start,end: widget.end,)));
+                              bus_times(start: TransDetails.start,end: TransDetails.end)));
                 }
               },
               child:  Container(
